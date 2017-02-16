@@ -1,0 +1,132 @@
+{% extends "subway/base.html" %}
+
+		<!-- Wrapper -->
+
+		{% block body %}
+
+				<!-- Banner -->
+					<section id="banner" class="major">
+						<div class="inner">
+							<header class="major">
+								<h1>Total Quot</h1>
+							</header>
+							<div class="content">
+								<p>영제이 <br />
+								물산</p>
+								<ul class="actions">
+									<li><a href="#two" class="button next scrolly">견적 시작</a></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+							<section id="forum">
+								<div class="inner">
+									<header class="forum">
+										<center><h3>여기저기 찾을 필요 있을까요?</h3></center>
+									</header>
+
+
+									<div class="box" onclick="location.href='/subway/1bz'">
+									<h1>
+										 견적요청서 작성하기
+									</h1>
+									</div>
+								</div>
+							</section>
+
+				<!-- Main -->
+					<div id="main">
+
+
+
+
+
+						<!-- One -->
+							<section id="two" class="tiles">
+								<article>
+									<span class="image">
+										<img src="images/icon/history.jp" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{% url "subway:1bz" %}" class="link">Total Quot 협력업체들</a></h3>
+										<p>직접 방문을 하셔야 하나요?</p>
+										<p>가까운 업체를 찾아 견적을 요청해 보세요</p>
+									</header>
+								</article>
+								<article>
+									<span class="image">
+										<img src="images/icon/department.jp" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{% url 'subway:2em'%}" class="link">제품 별 후기 글</a></h3>
+										<p>및 사진 보기</p>
+									</header>
+								</article>
+								<article>
+									<span class="image">
+										<img src="images/icon/gallery.jp" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{% url 'subway:3my'%}" class="link">Total Quot</a></h3>
+										<p>입점하기</p>
+									</header>
+								</article>
+								<article>
+									<span class="image">
+										<img src="images/icon/contact.jp" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{% url 'subway:4vs' %}" class="link">내 견적 보관함</a></h3>
+										<p>최근 보관 순으로</p>
+									</header>
+								</article>
+								<article>
+									<span class="image">
+										<img src="images/pic06.jpg" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{% url 'subway:5vs'%}" class="link">내가 쓴 후기</a></h3>
+										<p>써주셔서 감사합니다</p>
+									</header>
+								</article>
+								<article>
+									<span class="image">
+										<img src="images/pic06.jpg" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{% url 'subway:6fd'%}" class="link">고객 센터</a></h3>
+										<p>02-XXX-XXXX</p>
+									</header>
+								</article>
+								<article>
+									<span class="image">
+										<img src="images/pic06.jpg" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{% url 'subway:chat'%}" class="link">회사 정보</a></h3>
+										<p>연혁</p>
+									</header>
+								</article>
+								<article>
+									<span class="image">
+										<img src="images/pic06.jpg" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{% url 'subway:search'%}" class="link">즐겨찾기 리스트</a></h3>
+										<p>개인화된 메뉴</p>
+									</header>
+								</article>
+							</section>
+
+
+					</div>
+
+				<!-- Contact -->
+
+
+				<!-- Footer -->
+
+			</div>
+		{% endblock %}
+		<!-- Scripts -->
