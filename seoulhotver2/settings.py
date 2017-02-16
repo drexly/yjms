@@ -26,7 +26,7 @@ SECRET_KEY = '%zdz514cat9--mx(y#k+$!gq@+26*--j%7ibh%lfmvsy)@f#lm'
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['127.0.0.1','drexly.pythonanywhere.com', 'seoulhot-psypu.c9users.io' ]#pythonanywhere
+ALLOWED_HOSTS = ['127.0.0.1','yjms.pythonanywhere.com', 'seoulhot-psypu.c9users.io' ]#pythonanywhere
 
 
 
