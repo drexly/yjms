@@ -1,0 +1,157 @@
+{%extends "base.html" %}
+{%block title %}견적넷에 오신것을 환영합니다{% endblock %}
+{%block head %}<h4>견적넷에 오신것을 환영합니다</h4>{% endblock %}
+{%block content %}
+    {% load split from compute %}
+    {% load LCalc from compute %}
+    {% load RCalc from compute %}
+    {% load answered from compute %}
+    {% if user.username %}
+        {% ifequal user.first_name "inner" %}
+        <h4>환영합니다 {{ user.username }}님! 입찰 해보세요</h4>
+        {% endifequal %}
+        {% ifequal user.first_name "outer" %}
+        <h4>환영합니다 {{ user.username }}님! 응찰 해보세요</h4>
+        {% endifequal %}
+        {% if 'pr' in user.last_name %}
+            {% if user.first_name == 'inner' %}
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h4 class="panel-title">판촉물<span onclick="location.href='inorder/pr'" class="label label-success pull-right">입찰하기</span><span class="label label-warning pull-right">{% if allpr != None %}{{ allpr|length}}건{% else %}0건{% endif %}</span></h4>
+              </div>
+                 <div class="panel-body">
+                     <div class="list-group">
+                      {% for pr in allpr %}
+                          <a href="#" class="list-group-item">
+                          <div class="row">
+                          <div class="col-xs-{{ pr|LCalc }}">
+                            <h4 class="list-group-item-heading"><span class="label label-danger">{{ pr.many }}개</span> {{ pr.jumun }}</h4>
+                            <p class="list-group-item-text">{{ pr.content }}</p>
+                            <span class="badge">{{pr.ans_date}}</span>
+                            <br>
+                              {% if pr.tags != '' %}
+                                  {% with pr.tags|split:"#" as tags %}
+                                        {% for tag in tags %}
+                                            <span class="label label-success">{{ tag }}</span>
+                                        {% endfor %}
+                                  {% endwith %}
+                              {% endif %}
+                          </div>
+                          <div class="col-xs-{{ pr|RCalc }}">
+                              <ul class="list-group">
+                                  <li class="list-group-item">
+                                    <span class="badge">{{pr.outnums}}</span>
+                                    응찰건수:
+                                  </li>
+                                  <li class="list-group-item">
+                                    {% if pr.pic1 != '' %}
+                                    <img src="media/{{ pr.pic1 }}" height="64" width="64"></img>
+                                      {% endif %}
+                                    {% if pr.pic2 != '' %}
+                                    <img src="media/{{ pr.pic2 }}" height="64" width="64"></img>
+                                      {% endif %}
+                                    {% if pr.pic3 != '' %}
+                                    <img src="media/{{ pr.pic3 }}" height="64" width="64"></img>
+                                      {% endif %}
+                                    {% if pr.pic4 != '' %}
+                                    <img src="media/{{ pr.pic4 }}" height="64" width="64"></img>
+                                      {% endif %}
+                                    {% if pr.pic5 != '' %}
+                                    <img src="media/{{ pr.pic5 }}" height="64" width="64"></img>
+                                      {% endif %}
+                                    {% if pr.pic6 != '' %}
+                                    <img src="media/{{ pr.pic6 }}" height="64" width="64"></img>
+                                      {% endif %}
+                                  </li>
+                              </ul>
+                          </div>
+                          </div>
+                          </a>
+                         {% endfor %}
+                     </div>
+                </div>
+            </div>
+            {% elif user.first_name == 'outer'  %}
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h4 class="panel-title">판촉물<span class="label label-warning pull-right">{% if allpr != None %}{{ allpr|length}}건{% else %}0건{% endif %}</span></h4>
+              </div>
+                 <div class="panel-body">
+                     <div class="list-group">
+                      {% for pr in allpr %}
+                          <a href="#" class="list-group-item">
+                          <div class="row">
+                          <div class="col-xs-{{ pr|LCalc }}">
+                            <h4 class="list-group-item-heading"><span class="label label-danger">{{ pr.many }}개</span> {{ pr.jumun }}</h4>
+                            <p class="list-group-item-text">{{ pr.content }}</p>
+                            <span class="badge">{{pr.ans_date}}</span>
+                            <br>
+                              {% if pr.tags != '' %}
+                                  {% with pr.tags|split:"#" as tags %}
+                                        {% for tag in tags %}
+                                            <span class="label label-success">{{ tag }}</span>
+                                        {% endfor %}
+                                  {% endwith %}
+                              {% endif %}
+                          </div>
+                          <div class="col-xs-{{ pr|RCalc }}">
+                              <ul class="list-group">
+                                  <li class="list-group-item">
+                                    <span class="badge">{{pr.outnums}}</span>
+                                    응찰건수:
+                                  </li>
+                                  <li class="list-group-item">
+                                    {% if pr.pic1 != '' %}
+                                    <img src="media/{{ pr.pic1 }}" height="64" width="64"></img>
+                                      {% endif %}
+                                    {% if pr.pic2 != '' %}
+                                    <img src="media/{{ pr.pic2 }}" height="64" width="64"></img>
+                                      {% endif %}
+                                    {% if pr.pic3 != '' %}
+                                    <img src="media/{{ pr.pic3 }}" height="64" width="64"></img>
+                                      {% endif %}
+                                    {% if pr.pic4 != '' %}
+                                    <img src="media/{{ pr.pic4 }}" height="64" width="64"></img>
+                                      {% endif %}
+                                    {% if pr.pic5 != '' %}
+                                    <img src="media/{{ pr.pic5 }}" height="64" width="64"></img>
+                                      {% endif %}
+                                    {% if pr.pic6 != '' %}
+                                    <img src="media/{{ pr.pic6 }}" height="64" width="64"></img>
+                                      {% endif %}
+                                  </li>
+                                  <li class="list-group-item">
+                                      {% if pr.id|answered:mypr %}
+                                      <input class="btn btn-default btn-large" type="submit" value="응찰 하셨습니다"/>
+                                      {% else %}
+                                      <input class="btn btn-primary btn-large" type="submit" value="응찰 하기" onclick="location.href='outorder/pr/{{ pr.id }}'"/>
+                                      {% endif %}
+                                  </li>
+                              </ul>
+                          </div>
+                          </div>
+                          </a>
+                         {% endfor %}
+                     </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endif %}
+        {% if 'med' in user.last_name %}
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title">의료기구<span class="badge pull-right">입찰하기</span></h3>
+              </div>
+            </div>
+        {% endif %}
+        {% if 'clo' in user.last_name %}
+            <div class="panel panel-warning">
+              <div class="panel-heading">
+                <h3 class="panel-title">의류</h3>
+              </div>
+            </div>
+        {% endif %}
+    {% else %}
+        <h4>안녕하세요! 로그인하시고 입찰/응찰 해보세요</h4><br/>
+    {% endif %}
+{% endblock %}

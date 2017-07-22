@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    {% load bootstrap_themes %}
+    {% bootstrap_styles theme='cerulean' type='css' %}
+    {% bootstrap_script use_min=False %}
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">    <title>견적넷 | {% block title %}{% endblock %}</title>
+    </head>
+    <body>
+    <nav class="navbar navbar-inverse navbar-center">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">견적넷</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="입찰/응찰 품목">
+            </div>
+            <button type="submit" class="btn btn-default">견적 검색</button>
+        </form>
+          <ul class="nav navbar-nav navbar-right">
+              {% if user.is_authenticated %}
+                  <li><a href="#">{{ user.username }}님</a></li>
+                  {% if 'pr' in user.last_name %}
+                      {% if allpr != None %}
+                          <li><a href="#">판촉물:{{ allpr|length}}건</a></li>
+                      {% endif %}
+                  {% endif %}
+                  {% if 'clo' in user.last_name %}
+                      {% if allclo != None %}
+                          <li><a href="#">의류:{{ allclo|length}}건</a></li>
+                      {% endif %}
+                  {% endif %}
+                  {% if 'med' in user.last_name %}
+                      {% if allmed != None %}
+                          <li><a href="#">의료기구:{{ allmed|length}}건</a></li>
+                      {% endif %}
+                  {% endif %}
+                  <li><a href="/logout">로그아웃</a></li>
+              {% else %}
+                  <li><a href="/register/">회원가입</a></li>
+                  <li><a href="/login/">로그인</a></li>
+              {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+        {% block head %}{% endblock %} {% block content %}{% endblock %}
+    </body>
+</html>
